@@ -1,0 +1,44 @@
+<ActionBar class="action-bar">
+    <!-- 
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!-- 
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://navigation/menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label class="action-bar-title" text="Home"></Label>
+</ActionBar>
+
+<GridLayout class="page page-content">
+    <!-- <Label class="page-icon fa" text="&#xf015;"></Label> -->
+    <!-- <Label class="page-placeholder" text="No Activity"></Label> -->
+   
+</GridLayout>
+<!-- <Page xmlns:Card="nativescript-cardview"> -->
+<StackLayout>
+    <StackLayout  class="card" elevation="40" radius="10" *ngFor="let activity of activities" >
+        <StackLayout class="card-layout" (tap)="viewActivity()" [nsRouterLink]="['/viewCard']" pageTransition="slide">
+            <!-- <Label class="h2" [text]="item.heading"></Label>
+            <Label class="body" textWrap="true" [text]="item.content"></Label> -->
+
+            <Label class="cardLabel" [text]="activity.activityText"></Label>
+            <Label class="" [text]="activity.activitycount"></Label>
+
+            <!-- <Label class="cardLabel" text="ActivityText"></Label>
+            <Label class="" text="100"></Label> -->
+                
+
+        </StackLayout>
+    </StackLayout>
+</StackLayout>
+<!-- </Page> -->
+
+<FlexboxLayout justifyContent="flex-end" width="100%" alignItems="flex-end" id="" left="0">
+                <Button class="add-button" row="0" col="1" text="+" (tap)="addActivity()" [nsRouterLink]="['/add']" pageTransition="slide"></Button>
+</FlexboxLayout>
